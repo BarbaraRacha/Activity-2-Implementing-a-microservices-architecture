@@ -21,7 +21,7 @@ public class CustomerServiceApplication {
 	CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
 										RepositoryRestConfiguration repositoryRestConfiguration){
 		return args -> {
-			repositoryRestConfiguration.exposeIdsFor(Customer.class);
+			repositoryRestConfiguration.exposeIdsFor(Customer.class); //c pour afficher les ids sur web
 
             customerRepository.saveAll(
 					List.of(

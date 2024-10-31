@@ -1,23 +1,37 @@
-server:
-  port:
-    8888
-
+#server:
+#  port: 9999 # Port de la Gateway
+#
+#spring:
+#  application:
+#    name: gateway-service
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true # Activer la découverte Eureka pour un routage dynamique
 spring:
-  application:
-    name: gateway
-
   cloud:
-    discovery:
-      enabled: true
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
 
 ### c'est la configuration statique des routes (elle est remplacée par la configuration statique java au niveau de main)
-#    gateway:
+#gateway:
 #      routes:
-#        - id: r1
+#        - id: customer-service
 #          uri: http://localhost:8081
 #          predicates:
 #            - Path=/customers/**
-#        - id: r2
+#        - id: inventory-service
 #          uri: http://localhost:8082
 #          predicates:
 #            - Path=/products/**
+#
